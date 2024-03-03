@@ -59,9 +59,6 @@ def isolation() -> Generator[Path, None, None]:
 def data_dir() -> Generator[Path, None, None]:
     yield Path(os.environ[ConfigEnvVars.DATA])
 
-@pytest.fixture(scope='session')
-def isolated_data_dir() -> Generator[Path, None, None]:
-    yield Path(os.environ[ConfigEnvVars.DATA])
 
 @pytest.fixture(scope="session")
 def platform():
@@ -120,6 +117,3 @@ def conda_project(hatch, temp_dir_data, config_file, project_name):
     update_project_environment(project, "default", config)
 
     yield project_path
-
-if __name__ == "__main__":
-    print(os.environ[ConfigEnvVars.DATA])

@@ -4,7 +4,7 @@ from hatch_conda.plugin import CondaEnvironment
 
 
 class TestPythonVersion:
-    def test_default(self, isolation, data_dir, isolated_data_dir, platform, default_python_version):
+    def test_default(self, isolation, data_dir, platform, default_python_version):
         env_config = {}
         project = Project(
             isolation,
@@ -20,13 +20,14 @@ class TestPythonVersion:
             config=project.config.envs["default"],
             matrix_variables={},
             data_directory=data_dir,
-            isolated_data_directory=isolated_data_dir,
+            isolated_data_directory=None,
             platform=platform,
             verbosity=0,
         )
+
         assert environment.python_version == default_python_version
 
-    def test_long(self, isolation, data_dir, isolated_data_dir, platform):
+    def test_long(self, isolation, data_dir, platform):
         env_config = {"python": "3.10"}
         project = Project(
             isolation,
@@ -42,14 +43,14 @@ class TestPythonVersion:
             config=project.config.envs["default"],
             matrix_variables={},
             data_directory=data_dir,
-            isolated_data_directory=isolated_data_dir,
+            isolated_data_directory=None,
             platform=platform,
             verbosity=0,
         )
 
         assert environment.python_version == "3.10"
 
-    def test_short(self, isolation, data_dir, isolated_data_dir, platform):
+    def test_short(self, isolation, data_dir, platform):
         env_config = {"python": "310"}
         project = Project(
             isolation,
@@ -66,7 +67,7 @@ class TestPythonVersion:
             config=project.config.envs["default"],
             matrix_variables={},
             data_directory=data_dir,
-            isolated_data_directory=isolated_data_dir,
+            isolated_data_directory=None,
             platform=platform,
             verbosity=0,
         )
