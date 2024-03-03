@@ -25,6 +25,9 @@ class ShellManager:
 
     def enter_zsh(self, path: str, args: list[str], cmdl: str) -> None:
         self.spawn_linux_shell(path or "zsh", args or ["-i"], cmdl)
+        
+    def enter_fish(self, path: str, args: list[str], cmdl: str) -> None:
+        self.spawn_linux_shell(path or "fish", args or ["-i"], cmdl)
 
     def spawn_linux_shell(
         self, path: str, args: list[str] | None = None, cmdl: str = "", callback: Callable | None = None
